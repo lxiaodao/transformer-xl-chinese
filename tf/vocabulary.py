@@ -8,9 +8,11 @@ import numpy as np
 
 import tensorflow as tf
 
-from tensorflow.gfile import Open as open
-from tensorflow.gfile import Exists as exists
-
+#from tensorflow.gfile import Open as open
+# import tensorflow.compat.v1 as tf
+from tensorflow.compat.v1.gfile import Open as open
+#from tensorflow.gfile import Exists as exists
+from tensorflow.compat.v1.gfile import Exists as exists
 
 class Vocab(object):
     def __init__(self, special=[], min_freq=0, max_size=None, lower_case=True,

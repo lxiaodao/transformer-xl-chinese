@@ -3,7 +3,7 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-# os.environ['CUDA_VISIBLE_DEVICES'] = '8,9'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
 
 import math
 from vocabulary import Vocab
@@ -597,7 +597,7 @@ def inference(n_token, cutoffs, ps_device):
                 f.write('input:\n')
                 f.write(input_text+'\n')
 
-            output_len = 200
+            output_len = 600
             progress = ProgressBar()
             for step in progress(range(output_len)):
                 time.sleep(0.01)
