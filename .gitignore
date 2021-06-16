@@ -2,3 +2,7 @@
 *.txt
 *.pyc
 *.txt
+/data/doupo/cache.pkl
+/data/doupo/tfrecords/
+/tf/EXP-doupo4-1_head-1e4/
+/tf/EXP-doupo4-l_head-le4/
