@@ -275,6 +275,7 @@ def get_lm_corpus(data_dir, dataset):
         corpus = Corpus(data_dir, dataset, **kwargs)
 
         print("Saving dataset...")
+        ## 类似序列化写入文件
         with open(fn, "wb") as fp:
             pickle.dump(corpus, fp, protocol=2)
 
@@ -304,7 +305,7 @@ def main(unused_argv):
                                     FLAGS.tgt_len, FLAGS.num_core_per_host,
                                     FLAGS=FLAGS)
         return
-
+    #训练文件和valid文件分别按照tfrecords格式写入
     for split, batch_size in zip(
             ["train", "valid"],
             [FLAGS.per_host_train_bsz, FLAGS.per_host_valid_bsz]):

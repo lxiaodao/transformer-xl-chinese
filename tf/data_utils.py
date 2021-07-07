@@ -517,6 +517,7 @@ def get_input_fn(record_info_dir, split, per_host_bsz, tgt_len,
             file_paths.append(file_path)
 
         if split == "train":
+            #向量分割后得到什么？
             dataset = tf.data.Dataset.from_tensor_slices(file_paths)
             if len(file_paths) > 1:
                 dataset = dataset.shuffle(len(file_paths)).repeat()

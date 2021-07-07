@@ -247,6 +247,7 @@ def train(n_token, cutoffs, ps_device):
     tf.logging.info("num of batches {}".format(train_record_info["num_batch"]))
 
     # Create computational graph
+    # 训练用的数据集也创建好
     train_set = train_input_fn({
         "batch_size": FLAGS.train_batch_size,
         "data_dir": FLAGS.data_dir})
