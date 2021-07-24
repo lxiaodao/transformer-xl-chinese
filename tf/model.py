@@ -1,4 +1,5 @@
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import sys
 
 
@@ -457,6 +458,10 @@ def transformer(dec_inp, target, mems, n_token, n_layer, d_model, d_embed,
     # dec_inp = tf.Print(dec_inp, [dec_inp], "print of input: ")
 
     new_mems = []
+    #tf.name_scope()、tf.variable_scope()会在模型中开辟各自的空间，而其中的变量均在这个空间内进行管理
+    #，因为想要达到变量共享的效果, 就要在 tf.variable_scope()的作用域下使用 tf.get_variable() 这种方式产生和提取变量. 
+    #不像 tf.Variable() 每次都会产生新的变量, tf.get_variable() 如果遇到了已经存在名字的变量时, 
+    #它会单纯的提取这个同样名字的变量，如果不存在名字的变量再创建.
     with tf.variable_scope(scope):
         if untie_r:
             r_w_bias = tf.get_variable('r_w_bias', [n_layer, n_head, d_head],
@@ -477,7 +482,7 @@ def transformer(dec_inp, target, mems, n_token, n_layer, d_model, d_embed,
             proj_initializer = initializer
         lookup_fn = (mul_adaptive_embedding_lookup if use_tpu else
                      mask_adaptive_embedding_lookup)
-        # 得到不同字的 enbedding
+        # 得到不同字的 embedding
         embeddings, shared_params = lookup_fn(
             x=dec_inp,
             n_token=n_token,

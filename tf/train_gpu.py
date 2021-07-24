@@ -10,7 +10,9 @@ from vocabulary import Vocab
 from absl import flags
 from progressbar import ProgressBar
 import time
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_eager_execution()
 
 import model
 import data_utils
@@ -27,17 +29,18 @@ from postprocess import top_one_result, gen_on_keyword, gen_diversity
 # GPU config
 flags.DEFINE_integer("num_hosts", default=1,
                      help="Number of TPU hosts")
-flags.DEFINE_integer("num_core_per_host", default=8,
+flags.DEFINE_integer("num_core_per_host", default=4,
                      help="Number of cores per host")
 
 # Experiment (data/checkpoint/directory) config
-flags.DEFINE_string("data_dir", default="",
+# 2021-7-8
+flags.DEFINE_string("data_dir", default="../data/doupo/tfrecords",
                     help="Path to tf-records directory.")
-flags.DEFINE_string("record_info_dir", default="",
+flags.DEFINE_string("record_info_dir", default="../data/doupo/tfrecords/",
                     help="Path to local directory containing filenames.txt.")
-flags.DEFINE_string("corpus_info_path", default="",
+flags.DEFINE_string("corpus_info_path", default="../data/doupo/corpus-info.json",
                     help="Path to corpus-info.json file.")
-flags.DEFINE_string("model_dir", default=None,
+flags.DEFINE_string("model_dir", default="EXP-doupo4-1_head-1e4",
                     help="Estimator model_dir.")
 flags.DEFINE_bool("do_train", default=True,
                   help="Whether to run training.")
@@ -57,7 +60,7 @@ flags.DEFINE_string("warm_start_path", None,
                          " from warm_start_path.")
 
 # Optimization config
-flags.DEFINE_float("learning_rate", default=2.5e-4,
+flags.DEFINE_float("learning_rate", default=0.00010,
                    help="Maximum learning rate.")
 flags.DEFINE_float("clip", default=0.25,
                    help="Gradient clipping value.")
@@ -68,15 +71,15 @@ flags.DEFINE_integer("warmup_steps", default=0,
                      help="Number of steps for linear lr warmup.")
 
 # Training config
-flags.DEFINE_integer("train_batch_size", default=60,
+flags.DEFINE_integer("train_batch_size", default=4,
                      help="Size of train batch.")
 flags.DEFINE_integer("eval_batch_size", default=60,
                      help="Size of valid batch.")
-flags.DEFINE_integer("train_steps", default=100000,
+flags.DEFINE_integer("train_steps", default=1000000,
                      help="Total number of training steps.")
-flags.DEFINE_integer("iterations", default=500,
+flags.DEFINE_integer("iterations", default=200,
                      help="Number of iterations per repeat loop.")
-flags.DEFINE_integer("save_steps", default=10000,
+flags.DEFINE_integer("save_steps", default=4000,
                      help="number of steps for model checkpointing.")
 
 # Evaluation config
@@ -92,32 +95,32 @@ flags.DEFINE_string("eval_split", "valid",
                     help="Which data split to evaluate.")
 
 # Model config
-flags.DEFINE_integer("tgt_len", default=70,
+flags.DEFINE_integer("tgt_len", default=100,
                      help="Number of steps to predict")
-flags.DEFINE_integer("mem_len", default=70,
+flags.DEFINE_integer("mem_len", default=100,
                      help="Number of steps to cache")
 flags.DEFINE_bool("same_length", default=False,
                   help="Same length attention")
 flags.DEFINE_integer("clamp_len", default=-1,
                      help="Clamp length")
 
-flags.DEFINE_integer("n_layer", default=6,
+flags.DEFINE_integer("n_layer", default=16,
                      help="Number of layers.")
-flags.DEFINE_integer("d_model", default=500,
+flags.DEFINE_integer("d_model", default=410,
                      help="Dimension of the model.")
-flags.DEFINE_integer("d_embed", default=500,
+flags.DEFINE_integer("d_embed", default=410,
                      help="Dimension of the embeddings.")
 flags.DEFINE_integer("n_head", default=10,
                      help="Number of attention heads.")
-flags.DEFINE_integer("d_head", default=50,
+flags.DEFINE_integer("d_head", default=41,
                      help="Dimension of each attention head.")
-flags.DEFINE_integer("d_inner", default=1000,
+flags.DEFINE_integer("d_inner", default=2100,
                      help="Dimension of inner hidden size in positionwise feed-forward.")
 flags.DEFINE_float("dropout", default=0.1,
                    help="Dropout rate.")
-flags.DEFINE_float("dropatt", default=0.1,
+flags.DEFINE_float("dropatt", default=0.0,
                    help="Attention dropout rate.")
-flags.DEFINE_bool("untie_r", default=False,
+flags.DEFINE_bool("untie_r", default=True,
                   help="untie r_w_bias and r_r_bias")
 
 # Adaptive Softmax / Embedding
@@ -125,7 +128,7 @@ flags.DEFINE_bool("tie_weight", default=True,
                   help="Tie embedding and softmax weight.")
 flags.DEFINE_integer("div_val", default=1,
                      help="Divide the embedding size by this val for each bin")
-flags.DEFINE_bool("proj_share_all_but_first", default=False,
+flags.DEFINE_bool("proj_share_all_but_first", default=True,
                   help="True to share all but first projs, False not to share.")
 flags.DEFINE_bool("proj_same_dim", default=True,
                   help="Project the bin with the same dimension.")
@@ -155,6 +158,8 @@ def get_model_fn(n_token, cutoffs):
                 maxval=FLAGS.init_range,
                 seed=None)
         elif FLAGS.init == "normal":
+            #生成一组符合标准正态分布的 tensor 对象
+            #stddev：正态分布的标准差
             initializer = tf.initializers.random_normal(
                 stddev=FLAGS.init_std,
                 seed=None)
@@ -167,6 +172,7 @@ def get_model_fn(n_token, cutoffs):
             for i in range(1, len(tie_projs)):
                 tie_projs[i] = True
         # todo  明确loss含义
+        # 初始化算法模型
         loss, new_mems = model.transformer(
             dec_inp=inp,
             target=tgt,

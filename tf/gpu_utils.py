@@ -1,5 +1,6 @@
 import os
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 
 def assign_to_gpu(gpu=0, ps_dev="/device:CPU:0"):

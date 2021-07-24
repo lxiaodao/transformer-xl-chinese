@@ -107,6 +107,7 @@ class Vocab(object):
 
             print('final vocab size {} from {} unique tokens'.format(
                 len(self), len(self.counter)))
+            print('this idx2sym is {}'.format(self.idx2sym))
 
     # 主要在于convert_to_nparray, 其实也就是将vocab变成idx
     def encode_file(self, path, ordered=False, verbose=False,
@@ -156,9 +157,11 @@ class Vocab(object):
         return self.idx2sym[idx]
 
     def get_idx(self, sym):
+       
         if sym in self.sym2idx:
             return self.sym2idx[sym]
         else:
+            print('------get_idx sym {} in the self {}-------'.format(sym,self.sym2idx))
             assert hasattr(self, 'unk_idx')
             return self.sym2idx.get(sym, self.unk_idx)
 
@@ -170,6 +173,7 @@ class Vocab(object):
 
     # 字转index
     def convert_to_nparray(self, symbols):
+        print('------something {} will be convert_to_nparray-------'.format(symbols))
         nparray = np.array(self.get_indices(symbols), dtype=np.int64)
         return nparray
 

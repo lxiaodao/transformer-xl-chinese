@@ -14,12 +14,13 @@ import multiprocessing as mp
 import numpy as np
 
 from absl import flags
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
 from vocabulary import Vocab
 
-from tensorflow.gfile import Exists as exists
-from tensorflow.gfile import MakeDirs as makedirs
-from tensorflow.gfile import Glob as glob
+from tensorflow.compat.v1.gfile import Exists as exists
+from tensorflow.compat.v1.gfile import MakeDirs as makedirs
+from tensorflow.compat.v1.gfile import Glob as glob
 
 
 def _preprocess(shard, train, vocab, save_dir, cutoffs, bin_sizes, bsz, tgt_len,
