@@ -23,6 +23,20 @@ from tensorflow.compat.v1.gfile import Exists as exists
 from tensorflow.compat.v1.gfile import MakeDirs as makedirs
 from tensorflow.compat.v1.gfile import Glob as glob
 
+import logging
+
+
+root = logging.getLogger()
+root.setLevel(logging.INFO)
+
+#handler = logging.StreamHandler(sys.stdout)
+handler = logging.FileHandler('data_utils_chinese.log')
+handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+root.addHandler(handler)
+
+
 
 def _preprocess(shard, train, vocab, save_dir, cutoffs, bin_sizes, bsz, tgt_len,
                 num_core_per_host, use_tpu, num_shuffle):
@@ -178,7 +192,7 @@ def create_ordered_tfrecords(save_dir, basename, data, batch_size, tgt_len,
 
     save_path = os.path.join(save_dir, file_name)
     record_writer = tf.python_io.TFRecordWriter(save_path)
-
+    #计算批量处理的情况
     batched_data = batchify(data, batch_size, num_passes)
 
     num_batch = 0

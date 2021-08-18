@@ -1,0 +1,192 @@
+2021-08-12 16:37:10,554 - tensorflow - INFO - [train] File names ['train.bsz-4.tlen-100.tfrecords']
+2021-08-12 16:37:10,554 - tensorflow - INFO - num of batches 3
+2021-08-12 16:37:10,584 - tensorflow - WARNING - From E:\python-worspacke\xl2\tf\data_utils.py:507: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-12 16:37:10,624 - tensorflow - WARNING - From C:\Anaconda3\envs\xl2\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2021-08-12 16:37:10,634 - tensorflow - INFO - ---three params are  : Tensor("strided_slice:0", shape=(), dtype=int32)-Tensor("strided_slice_1:0", shape=(), dtype=int32)-Tensor("add:0", shape=(), dtype=int32)
+2021-08-12 16:37:11,424 - tensorflow - INFO - ---embeddings is ---
+2021-08-12 16:37:11,474 - tensorflow - INFO - [[[ 0.07900064 -0.29701033 -0.19783814 ... -0.20441192 -0.40506908
+    0.0845286 ]]
+
+ [[-0.17076893  0.5722549  -0.22826993 ... -0.8116589  -0.60901666
+   -0.5796076 ]]
+
+ [[ 0.5951261  -0.2595611  -0.41920492 ... -0.78151923  0.19370408
+   -0.13849708]]
+
+ ...
+
+ [[ 0.5951261  -0.2595611  -0.41920492 ... -0.78151923  0.19370408
+   -0.13849708]]
+
+ [[ 0.79751     0.03718904 -0.5367109  ...  0.18506014  0.1347536
+    0.02620648]]
+
+ [[ 0.79751     0.03718904 -0.5367109  ...  0.18506014  0.1347536
+    0.02620648]]]
+2021-08-12 16:37:11,474 - tensorflow - INFO - ---mask print---
+2021-08-12 16:37:11,514 - tensorflow - INFO - [[0. 0. 0. ... 1. 1. 1.]
+ [0. 0. 0. ... 1. 1. 1.]
+ [0. 0. 0. ... 1. 1. 1.]
+ ...
+ [0. 0. 0. ... 0. 1. 1.]
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 0. 0. ... 0. 0. 0.]]
+2021-08-12 16:48:12,379 - tensorflow - INFO - [train] File names ['train.bsz-4.tlen-100.tfrecords']
+2021-08-12 16:48:12,379 - tensorflow - INFO - num of batches 3
+2021-08-12 16:48:12,409 - tensorflow - WARNING - From E:\python-worspacke\xl2\tf\data_utils.py:507: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-12 16:48:12,449 - tensorflow - WARNING - From C:\Anaconda3\envs\xl2\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2021-08-12 16:48:13,219 - tensorflow - INFO - ---three params are  : Tensor("strided_slice:0", shape=(), dtype=int32)-Tensor("strided_slice_1:0", shape=(), dtype=int32)-Tensor("add:0", shape=(), dtype=int32)
+2021-08-12 16:48:13,219 - tensorflow - INFO - ---lookup_table embeddings is ---
+2021-08-12 16:48:13,219 - tensorflow - INFO - Tensor("mul:0", shape=(?, 1, 410), dtype=float32)
+2021-08-12 16:48:13,219 - tensorflow - INFO - ---mask print---
+2021-08-12 16:48:13,219 - tensorflow - INFO - Tensor("concat:0", shape=(?, ?), dtype=float32)
+2021-08-12 17:01:11,077 - tensorflow - INFO - [train] File names ['train.bsz-4.tlen-100.tfrecords']
+2021-08-12 17:01:11,077 - tensorflow - INFO - num of batches 3
+2021-08-12 17:01:11,107 - tensorflow - WARNING - From E:\python-worspacke\xl2\tf\data_utils.py:507: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-12 17:01:11,137 - tensorflow - WARNING - From C:\Anaconda3\envs\xl2\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2021-08-12 17:06:33,357 - tensorflow - INFO - [train] File names ['train.bsz-4.tlen-100.tfrecords']
+2021-08-12 17:06:33,357 - tensorflow - INFO - num of batches 3
+2021-08-12 17:06:33,387 - tensorflow - WARNING - From E:\python-worspacke\xl2\tf\data_utils.py:507: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-12 17:06:33,417 - tensorflow - WARNING - From C:\Anaconda3\envs\xl2\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2021-08-12 17:06:58,606 - tensorflow - INFO - [train] File names ['train.bsz-4.tlen-100.tfrecords']
+2021-08-12 17:06:58,606 - tensorflow - INFO - num of batches 3
+2021-08-12 17:06:58,636 - tensorflow - WARNING - From E:\python-worspacke\xl2\tf\data_utils.py:507: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-12 17:06:58,676 - tensorflow - WARNING - From C:\Anaconda3\envs\xl2\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2021-08-12 17:06:59,496 - tensorflow - INFO - ---three params are  : 100-100-200
+2021-08-12 17:06:59,496 - tensorflow - INFO - ---lookup_table embeddings is ---
+2021-08-12 17:06:59,516 - tensorflow - INFO - [[[ 0.01817701 -0.4873861  -0.42701092 ... -0.4264073   0.07584231
+    0.16020231]]
+
+ [[-0.06017187 -0.26551726  0.02576685 ...  0.6171481  -0.45881605
+    0.44525564]]
+
+ [[ 0.35275826  0.2078668   0.1261902  ... -0.05768597 -0.10151708
+   -0.00138627]]
+
+ ...
+
+ [[ 0.15687144 -0.21904843 -0.35075393 ... -0.55597115  0.3511763
+   -1.0250057 ]]
+
+ [[ 0.3861832  -0.29185    -0.26341513 ...  0.15569985 -0.57015306
+   -0.20558295]]
+
+ [[-0.07224581  0.08230732  0.03982049 ... -0.05193862  0.36047515
+    0.58572996]]]
+2021-08-12 17:06:59,526 - tensorflow - INFO - [[[ 0.40229183  0.07234102 -0.14907065 ...  0.34795326  0.48022935
+   -0.12778912]]
+
+ [[-0.00763442 -0.4252496  -0.5007671  ...  0.63108814  0.33832568
+    0.29360044]]
+
+ [[ 0.01817701 -0.4873861  -0.42701092 ... -0.4264073   0.07584231
+    0.16020231]]
+
+ ...
+
+ [[ 0.01817701 -0.4873861  -0.42701092 ... -0.4264073   0.07584231
+    0.16020231]]
+
+ [[-0.06017187 -0.26551726  0.02576685 ...  0.6171481  -0.45881605
+    0.44525564]]
+
+ [[-0.06017187 -0.26551726  0.02576685 ...  0.6171481  -0.45881605
+    0.44525564]]]
+2021-08-12 17:06:59,526 - tensorflow - INFO - ---mask print---
+2021-08-12 17:06:59,556 - tensorflow - INFO - [[0. 0. 0. ... 1. 1. 1.]
+ [0. 0. 0. ... 1. 1. 1.]
+ [0. 0. 0. ... 1. 1. 1.]
+ ...
+ [0. 0. 0. ... 0. 1. 1.]
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 0. 0. ... 0. 0. 0.]]
+2021-08-12 17:06:59,556 - tensorflow - INFO - [[0. 0. 0. ... 1. 1. 1.]
+ [0. 0. 0. ... 1. 1. 1.]
+ [0. 0. 0. ... 1. 1. 1.]
+ ...
+ [0. 0. 0. ... 0. 1. 1.]
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 0. 0. ... 0. 0. 0.]]
+2021-08-14 14:45:35,290 - tensorflow - INFO - [train] File names ['train.bsz-4.tlen-100.tfrecords']
+2021-08-14 14:45:35,293 - tensorflow - INFO - num of batches 3
+2021-08-14 14:45:35,407 - tensorflow - WARNING - From E:\python-worspacke\xl2\tf\data_utils.py:507: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-14 14:45:35,592 - tensorflow - WARNING - From C:\Anaconda3\envs\xl2\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2021-08-14 14:51:58,380 - tensorflow - INFO - ---three params are  : 100-100-200
+2021-08-14 14:53:23,061 - tensorflow - INFO - ---lookup_table embeddings is ---
+2021-08-14 14:53:23,102 - tensorflow - INFO - [[[ 0.19037017 -0.11953522  0.07653881 ... -0.03977082  0.36113173
+   -0.1881461 ]]
+
+ [[ 0.1725579   0.23446134 -0.85809064 ...  0.13748348  0.18252961
+    0.28333044]]
+
+ [[-0.30424237 -0.26145136 -0.23350431 ... -0.02051694  0.11194833
+   -0.32826394]]
+
+ ...
+
+ [[ 1.2577157   0.07036225 -0.07973658 ... -0.568016    0.2775722
+    0.17021967]]
+
+ [[-0.27664214 -0.30076787 -0.12285505 ... -0.16304912  0.24716906
+    0.23824397]]
+
+ [[ 0.06682753  0.08215629  0.05536901 ... -0.3717356   0.24224141
+    0.29849073]]]
+2021-08-14 14:53:23,116 - tensorflow - INFO - [[[-0.10685358 -0.14191632  0.65273076 ... -0.16524163 -0.32789204
+    0.15220413]]
+
+ [[ 0.3864251   0.5355147  -0.13452066 ... -0.38426062 -0.38150045
+    0.5245835 ]]
+
+ [[ 0.19037017 -0.11953522  0.07653881 ... -0.03977082  0.36113173
+   -0.1881461 ]]
+
+ ...
+
+ [[ 0.19037017 -0.11953522  0.07653881 ... -0.03977082  0.36113173
+   -0.1881461 ]]
+
+ [[ 0.1725579   0.23446134 -0.85809064 ...  0.13748348  0.18252961
+    0.28333044]]
+
+ [[ 0.1725579   0.23446134 -0.85809064 ...  0.13748348  0.18252961
+    0.28333044]]]
+2021-08-14 14:53:23,121 - tensorflow - INFO - ---mask print---
+2021-08-14 14:53:23,159 - tensorflow - INFO - [[0. 0. 0. ... 1. 1. 1.]
+ [0. 0. 0. ... 1. 1. 1.]
+ [0. 0. 0. ... 1. 1. 1.]
+ ...
+ [0. 0. 0. ... 0. 1. 1.]
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 0. 0. ... 0. 0. 0.]]
+2021-08-14 14:53:23,165 - tensorflow - INFO - [[0. 0. 0. ... 1. 1. 1.]
+ [0. 0. 0. ... 1. 1. 1.]
+ [0. 0. 0. ... 1. 1. 1.]
+ ...
+ [0. 0. 0. ... 0. 1. 1.]
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 0. 0. ... 0. 0. 0.]]

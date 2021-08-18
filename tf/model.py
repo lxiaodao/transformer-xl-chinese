@@ -107,6 +107,7 @@ def embedding_lookup(lookup_table, x, use_tpu=True):
         else:
             return tf.einsum('nd,ibn->ibd', lookup_table, one_hot_idx)
     else:
+        # 根据词的位置x 找到在lookup_table中的向量tensor
         return tf.nn.embedding_lookup(lookup_table, x)
 
 
@@ -114,6 +115,7 @@ def mask_adaptive_embedding_lookup(x, n_token, d_embed, d_proj, cutoffs, initial
                                    proj_initializer, div_val=1,
                                    proj_same_dim=True,
                                    scope='adaptive_embed', **kwargs):
+    # 开根号
     emb_scale = d_proj ** 0.5
     with tf.variable_scope(scope):
         if div_val == 1:
@@ -448,6 +450,10 @@ def transformer(dec_inp, target, mems, n_token, n_layer, d_model, d_embed,
                 untie_r=False, proj_same_dim=True,
                 scope='transformer'):
     """
+    dec_inp: input like x
+    mems:
+   n_token: 词库长度
+    target:  wanted output like y
     cutoffs: a list of python int. Cutoffs for adaptive softmax.
     tie_projs: a list of python bools. Whether to tie the projections.
     use_tpu: if True, use one_hot in embedding lookup and bin-based implementation
@@ -462,6 +468,7 @@ def transformer(dec_inp, target, mems, n_token, n_layer, d_model, d_embed,
     #，因为想要达到变量共享的效果, 就要在 tf.variable_scope()的作用域下使用 tf.get_variable() 这种方式产生和提取变量. 
     #不像 tf.Variable() 每次都会产生新的变量, tf.get_variable() 如果遇到了已经存在名字的变量时, 
     #它会单纯的提取这个同样名字的变量，如果不存在名字的变量再创建.
+    #untie_r 赋值true
     with tf.variable_scope(scope):
         if untie_r:
             r_w_bias = tf.get_variable('r_w_bias', [n_layer, n_head, d_head],
@@ -473,7 +480,7 @@ def transformer(dec_inp, target, mems, n_token, n_layer, d_model, d_embed,
                                        initializer=initializer)
             r_r_bias = tf.get_variable('r_r_bias', [n_head, d_head],
                                        initializer=initializer)
-
+        #获取维度数值？
         qlen = tf.shape(dec_inp)[0]
         mlen = tf.shape(mems[0])[0] if mems is not None else 0
         klen = mlen + qlen
@@ -483,11 +490,12 @@ def transformer(dec_inp, target, mems, n_token, n_layer, d_model, d_embed,
         lookup_fn = (mul_adaptive_embedding_lookup if use_tpu else
                      mask_adaptive_embedding_lookup)
         # 得到不同字的 embedding
+        # 返回放大的y值 和 lookup_table参数，词库数量，嵌入数量度
         embeddings, shared_params = lookup_fn(
             x=dec_inp,
             n_token=n_token,
-            d_embed=d_embed,
-            d_proj=d_model,
+            d_embed=d_embed, #410
+            d_proj=d_model, #410
             cutoffs=cutoffs,
             initializer=initializer,
             proj_initializer=proj_initializer,
@@ -503,7 +511,9 @@ def transformer(dec_inp, target, mems, n_token, n_layer, d_model, d_embed,
             pos_seq = tf.minimum(pos_seq, clamp_len)
         inv_freq = 1 / (10000 ** (tf.range(0, d_model, 2.0) / d_model))
         pos_emb = positional_embedding(pos_seq, inv_freq)
-
+        
+        #dropput rate 0.1
+        #预测元素被丢弃的概率 is_training=true
         output = tf.layers.dropout(embeddings, dropout, training=is_training)
         pos_emb = tf.layers.dropout(pos_emb, dropout, training=is_training)
 
@@ -541,7 +551,7 @@ def transformer(dec_inp, target, mems, n_token, n_layer, d_model, d_embed,
 
         logsoftmax_fn = (mul_adaptive_logsoftmax if use_tpu else
                          mask_adaptive_logsoftmax)
-
+        # 计算根据输入input（x）计算出来的output同target（希望的y）偏差多少
         loss = logsoftmax_fn(
             hidden=output,
             target=target,

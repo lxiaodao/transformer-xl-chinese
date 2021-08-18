@@ -1,0 +1,530 @@
+2021-08-11 17:53:56,040 - tensorflow - WARNING - From from-tensor_test.py:45: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-11 17:53:57,934 - tensorflow - INFO - ---inp---
+2021-08-11 17:53:57,935 - tensorflow - INFO - <DatasetV1Adapter shapes: ((4, ?), (4, ?)), types: (tf.int32, tf.int32)>
+2021-08-11 17:55:21,585 - tensorflow - WARNING - From from-tensor_test.py:45: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-11 17:55:51,186 - tensorflow - WARNING - From from-tensor_test.py:45: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-11 17:57:15,336 - tensorflow - WARNING - From from-tensor_test.py:45: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-11 17:59:25,308 - tensorflow - WARNING - From e:\python-worspacke\xl2\tf\from-tensor_test.py:45: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-11 17:59:40,396 - tensorflow - INFO - ---inp---
+2021-08-11 17:59:46,275 - tensorflow - INFO - <DatasetV1Adapter shapes: ((4, ?), (4, ?)), types: (tf.int32, tf.int32)>
+2021-08-11 18:26:28,426 - tensorflow - WARNING - From from-tensor_test.py:45: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-11 18:26:29,052 - tensorflow - INFO - ---inp---
+2021-08-11 18:26:29,052 - tensorflow - INFO - <DatasetV1Adapter shapes: ((4, ?), (4, ?)), types: (tf.int32, tf.int32)>
+2021-08-11 18:47:23,112 - tensorflow - INFO - ---inp---
+2021-08-11 18:47:23,112 - tensorflow - INFO - <TFRecordDatasetV1 shapes: (), types: tf.string>
+2021-08-11 18:54:23,808 - tensorflow - WARNING - From from-tensor_test.py:48: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-11 18:56:01,260 - tensorflow - WARNING - From from-tensor_test.py:48: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-11 18:56:01,370 - tensorflow - INFO - <DatasetV1Adapter shapes: ((?,), (?,)), types: (tf.int32, tf.int32)>
+2021-08-11 18:57:22,218 - tensorflow - INFO - ---this is a tfrecord dataset---
+2021-08-11 18:57:22,218 - tensorflow - INFO - <TFRecordDatasetV1 shapes: (), types: tf.string>
+2021-08-11 18:57:22,222 - tensorflow - WARNING - From from-tensor_test.py:48: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-11 18:57:22,340 - tensorflow - INFO - <DatasetV1Adapter shapes: ((4, ?), (4, ?)), types: (tf.int32, tf.int32)>
+2021-08-11 19:06:16,832 - tensorflow - INFO - ---this is a tfrecord dataset---
+2021-08-11 19:06:16,832 - tensorflow - INFO - <TFRecordDatasetV1 shapes: (), types: tf.string>
+2021-08-11 19:06:16,842 - tensorflow - WARNING - From from-tensor_test.py:48: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-11 19:06:16,912 - tensorflow - WARNING - From C:\Anaconda3\envs\xl2\lib\site-packages\tensorflow\python\data\ops\iterator_ops.py:532: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2021-08-11 19:06:17,062 - tensorflow - INFO - tf.Tensor(
+[[  0 300   7 298   1 392 334 275 132 193   0   0   3 207  20  71 413   9
+  237 412   4   0   0 222 282 243 405 409 287 288  10 400 383  28 170 266
+  325 221  27  68 281 275  26  16 131 141 413 151 161 400 211 340 182 413
+  107 345 221 282   7 199 324 114 413 302 204 275 192 202 413 119  18 131
+   71 413 316 148 326 271 171 152 381 275 200 268 247 247 275  68 374  23
+  202 172  20  17 413 159 226   7 389 389]
+ [263 413 213 153 341 404 361  61 145 210 413  36  57 324 267 324 252  23
+  413 106 372 221 225  39 169 122 145 210  17 274  90 274 112   6   4   0
+    0   3 108 413 215 161 377  93 387  21 125 126 275 132 193 151 161 413
+  136  32 175  19 334 408 188 373 327 232 228  23 109 415   4   0   0   3
+  356 286 376 101 413 190 350  51  23  31  19  25 172  24 413 186 170 290
+  253 391 176  23  96   5   4   0   0 102]
+ [  4 331 245 275   7 299 413 333 254 334 147 275 368 366 413 143 399 275
+  118  67  23 388  37 275 220  94   7 203 413 142  78 275 366 168 413  13
+  102 120 275  14 270 413 221  27 230 230  12  54   6   0   0   3  11   7
+   16 413 333 138 412   4   0   0  98 282 243 405  30 275 111 127 413   7
+   93 151 134 173 375 275  30 314  17 363  61 413 151 134  63  63  61 124
+  413 390 371 275 349 351 127  45 216 150]
+ [ 20 239 414   8 237 412 304  66   2 407 304 412   4   0   0   3 318 412
+    4  98 282 243 405 100 191 111  61 275 188 311 413 151 134 323 403 196
+  362  23 170 187 275 299 146   5   0   0   3 110 110 413   8 237 207  20
+  239 413 279  23  12 362 413 201 373 374 166 413 180 177 402 130  87 397
+  343   9 161 214 385 413 135 153 320 293  18   7  93 279 234 275 207 315
+   23  96   5   4   0   0   0   0   3  11]], shape=(4, 100), dtype=int32)
+2021-08-11 19:06:17,062 - tensorflow - INFO - ------label_feed------
+2021-08-11 19:06:17,062 - tensorflow - INFO - [<tf.Tensor: id=51, shape=(1, 100), dtype=int32, numpy=
+array([[300,   7, 298,   1, 392, 334, 275, 132, 193,   0,   0,   3, 207,
+         20,  71, 413,   9, 237, 412,   4,   0,   0, 222, 282, 243, 405,
+        409, 287, 288,  10, 400, 383,  28, 170, 266, 325, 221,  27,  68,
+        281, 275,  26,  16, 131, 141, 413, 151, 161, 400, 211, 340, 182,
+        413, 107, 345, 221, 282,   7, 199, 324, 114, 413, 302, 204, 275,
+        192, 202, 413, 119,  18, 131,  71, 413, 316, 148, 326, 271, 171,
+        152, 381, 275, 200, 268, 247, 247, 275,  68, 374,  23, 202, 172,
+         20,  17, 413, 159, 226,   7, 389, 389, 379]])>, <tf.Tensor: id=52, shape=(1, 100), dtype=int32, numpy=
+array([[413, 213, 153, 341, 404, 361,  61, 145, 210, 413,  36,  57, 324,
+        267, 324, 252,  23, 413, 106, 372, 221, 225,  39, 169, 122, 145,
+        210,  17, 274,  90, 274, 112,   6,   4,   0,   0,   3, 108, 413,
+        215, 161, 377,  93, 387,  21, 125, 126, 275, 132, 193, 151, 161,
+        413, 136,  32, 175,  19, 334, 408, 188, 373, 327, 232, 228,  23,
+        109, 415,   4,   0,   0,   3, 356, 286, 376, 101, 413, 190, 350,
+         51,  23,  31,  19,  25, 172,  24, 413, 186, 170, 290, 253, 391,
+        176,  23,  96,   5,   4,   0,   0, 102, 120]])>, <tf.Tensor: id=53, shape=(1, 100), dtype=int32, numpy=
+array([[331, 245, 275,   7, 299, 413, 333, 254, 334, 147, 275, 368, 366,
+        413, 143, 399, 275, 118,  67,  23, 388,  37, 275, 220,  94,   7,
+        203, 413, 142,  78, 275, 366, 168, 413,  13, 102, 120, 275,  14,
+        270, 413, 221,  27, 230, 230,  12,  54,   6,   0,   0,   3,  11,
+          7,  16, 413, 333, 138, 412,   4,   0,   0,  98, 282, 243, 405,
+         30, 275, 111, 127, 413,   7,  93, 151, 134, 173, 375, 275,  30,
+        314,  17, 363,  61, 413, 151, 134,  63,  63,  61, 124, 413, 390,
+        371, 275, 349, 351, 127,  45, 216, 150,  23]])>, <tf.Tensor: id=54, shape=(1, 100), dtype=int32, numpy=
+array([[239, 414,   8, 237, 412, 304,  66,   2, 407, 304, 412,   4,   0,
+          0,   3, 318, 412,   4,  98, 282, 243, 405, 100, 191, 111,  61,
+        275, 188, 311, 413, 151, 134, 323, 403, 196, 362,  23, 170, 187,
+        275, 299, 146,   5,   0,   0,   3, 110, 110, 413,   8, 237, 207,
+         20, 239, 413, 279,  23,  12, 362, 413, 201, 373, 374, 166, 413,
+        180, 177, 402, 130,  87, 397, 343,   9, 161, 214, 385, 413, 135,
+        153, 320, 293,  18,   7,  93, 279, 234, 275, 207, 315,  23,  96,
+          5,   4,   0,   0,   0,   0,   3,  11,   7]])>]
+2021-08-12 16:12:06,090 - tensorflow - INFO - ---this is a tfrecord dataset---
+2021-08-12 16:12:06,090 - tensorflow - INFO - <TFRecordDatasetV1 shapes: (), types: tf.string>
+2021-08-12 16:12:06,100 - tensorflow - WARNING - From from-tensor_test.py:48: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-12 16:12:06,169 - tensorflow - WARNING - From C:\Anaconda3\envs\xl2\lib\site-packages\tensorflow\python\data\ops\iterator_ops.py:532: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2021-08-12 16:12:06,339 - tensorflow - INFO - ------After transpose input is------
+2021-08-12 16:12:06,339 - tensorflow - INFO - tf.Tensor(
+[[  0]
+ [300]
+ [  7]
+ [298]
+ [  1]
+ [392]
+ [334]
+ [275]
+ [132]
+ [193]
+ [  0]
+ [  0]
+ [  3]
+ [207]
+ [ 20]
+ [ 71]
+ [413]
+ [  9]
+ [237]
+ [412]
+ [  4]
+ [  0]
+ [  0]
+ [222]
+ [282]
+ [243]
+ [405]
+ [409]
+ [287]
+ [288]
+ [ 10]
+ [400]
+ [383]
+ [ 28]
+ [170]
+ [266]
+ [325]
+ [221]
+ [ 27]
+ [ 68]
+ [281]
+ [275]
+ [ 26]
+ [ 16]
+ [131]
+ [141]
+ [413]
+ [151]
+ [161]
+ [400]
+ [211]
+ [340]
+ [182]
+ [413]
+ [107]
+ [345]
+ [221]
+ [282]
+ [  7]
+ [199]
+ [324]
+ [114]
+ [413]
+ [302]
+ [204]
+ [275]
+ [192]
+ [202]
+ [413]
+ [119]
+ [ 18]
+ [131]
+ [ 71]
+ [413]
+ [316]
+ [148]
+ [326]
+ [271]
+ [171]
+ [152]
+ [381]
+ [275]
+ [200]
+ [268]
+ [247]
+ [247]
+ [275]
+ [ 68]
+ [374]
+ [ 23]
+ [202]
+ [172]
+ [ 20]
+ [ 17]
+ [413]
+ [159]
+ [226]
+ [  7]
+ [389]
+ [389]], shape=(100, 1), dtype=int32)
+2021-08-12 16:12:06,339 - tensorflow - INFO - ------After transpose tgt(label) is------
+2021-08-12 16:12:06,339 - tensorflow - INFO - tf.Tensor(
+[[300]
+ [  7]
+ [298]
+ [  1]
+ [392]
+ [334]
+ [275]
+ [132]
+ [193]
+ [  0]
+ [  0]
+ [  3]
+ [207]
+ [ 20]
+ [ 71]
+ [413]
+ [  9]
+ [237]
+ [412]
+ [  4]
+ [  0]
+ [  0]
+ [222]
+ [282]
+ [243]
+ [405]
+ [409]
+ [287]
+ [288]
+ [ 10]
+ [400]
+ [383]
+ [ 28]
+ [170]
+ [266]
+ [325]
+ [221]
+ [ 27]
+ [ 68]
+ [281]
+ [275]
+ [ 26]
+ [ 16]
+ [131]
+ [141]
+ [413]
+ [151]
+ [161]
+ [400]
+ [211]
+ [340]
+ [182]
+ [413]
+ [107]
+ [345]
+ [221]
+ [282]
+ [  7]
+ [199]
+ [324]
+ [114]
+ [413]
+ [302]
+ [204]
+ [275]
+ [192]
+ [202]
+ [413]
+ [119]
+ [ 18]
+ [131]
+ [ 71]
+ [413]
+ [316]
+ [148]
+ [326]
+ [271]
+ [171]
+ [152]
+ [381]
+ [275]
+ [200]
+ [268]
+ [247]
+ [247]
+ [275]
+ [ 68]
+ [374]
+ [ 23]
+ [202]
+ [172]
+ [ 20]
+ [ 17]
+ [413]
+ [159]
+ [226]
+ [  7]
+ [389]
+ [389]
+ [379]], shape=(100, 1), dtype=int32)
+2021-08-14 16:38:02,575 - tensorflow - INFO - ---this is a tfrecord dataset---
+2021-08-14 16:38:02,576 - tensorflow - INFO - <TFRecordDatasetV1 shapes: (), types: tf.string>
+2021-08-14 16:38:02,584 - tensorflow - WARNING - From from-tensor_test.py:48: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2021-08-14 16:38:02,609 - tensorflow - WARNING - From C:\Anaconda3\envs\xl2\lib\site-packages\tensorflow\python\data\ops\iterator_ops.py:532: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2021-08-14 16:38:03,823 - tensorflow - INFO - ------After transpose input is------
+2021-08-14 16:38:03,824 - tensorflow - INFO - tf.Tensor(
+[[  0]
+ [300]
+ [  7]
+ [298]
+ [  1]
+ [392]
+ [334]
+ [275]
+ [132]
+ [193]
+ [  0]
+ [  0]
+ [  3]
+ [207]
+ [ 20]
+ [ 71]
+ [413]
+ [  9]
+ [237]
+ [412]
+ [  4]
+ [  0]
+ [  0]
+ [222]
+ [282]
+ [243]
+ [405]
+ [409]
+ [287]
+ [288]
+ [ 10]
+ [400]
+ [383]
+ [ 28]
+ [170]
+ [266]
+ [325]
+ [221]
+ [ 27]
+ [ 68]
+ [281]
+ [275]
+ [ 26]
+ [ 16]
+ [131]
+ [141]
+ [413]
+ [151]
+ [161]
+ [400]
+ [211]
+ [340]
+ [182]
+ [413]
+ [107]
+ [345]
+ [221]
+ [282]
+ [  7]
+ [199]
+ [324]
+ [114]
+ [413]
+ [302]
+ [204]
+ [275]
+ [192]
+ [202]
+ [413]
+ [119]
+ [ 18]
+ [131]
+ [ 71]
+ [413]
+ [316]
+ [148]
+ [326]
+ [271]
+ [171]
+ [152]
+ [381]
+ [275]
+ [200]
+ [268]
+ [247]
+ [247]
+ [275]
+ [ 68]
+ [374]
+ [ 23]
+ [202]
+ [172]
+ [ 20]
+ [ 17]
+ [413]
+ [159]
+ [226]
+ [  7]
+ [389]
+ [389]], shape=(100, 1), dtype=int32)
+2021-08-14 16:38:03,828 - tensorflow - INFO - ------After transpose tgt(label) is------
+2021-08-14 16:38:03,829 - tensorflow - INFO - tf.Tensor(
+[[300]
+ [  7]
+ [298]
+ [  1]
+ [392]
+ [334]
+ [275]
+ [132]
+ [193]
+ [  0]
+ [  0]
+ [  3]
+ [207]
+ [ 20]
+ [ 71]
+ [413]
+ [  9]
+ [237]
+ [412]
+ [  4]
+ [  0]
+ [  0]
+ [222]
+ [282]
+ [243]
+ [405]
+ [409]
+ [287]
+ [288]
+ [ 10]
+ [400]
+ [383]
+ [ 28]
+ [170]
+ [266]
+ [325]
+ [221]
+ [ 27]
+ [ 68]
+ [281]
+ [275]
+ [ 26]
+ [ 16]
+ [131]
+ [141]
+ [413]
+ [151]
+ [161]
+ [400]
+ [211]
+ [340]
+ [182]
+ [413]
+ [107]
+ [345]
+ [221]
+ [282]
+ [  7]
+ [199]
+ [324]
+ [114]
+ [413]
+ [302]
+ [204]
+ [275]
+ [192]
+ [202]
+ [413]
+ [119]
+ [ 18]
+ [131]
+ [ 71]
+ [413]
+ [316]
+ [148]
+ [326]
+ [271]
+ [171]
+ [152]
+ [381]
+ [275]
+ [200]
+ [268]
+ [247]
+ [247]
+ [275]
+ [ 68]
+ [374]
+ [ 23]
+ [202]
+ [172]
+ [ 20]
+ [ 17]
+ [413]
+ [159]
+ [226]
+ [  7]
+ [389]
+ [389]
+ [379]], shape=(100, 1), dtype=int32)

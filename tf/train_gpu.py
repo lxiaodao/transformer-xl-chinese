@@ -149,9 +149,11 @@ FLAGS = flags.FLAGS
 
 def get_model_fn(n_token, cutoffs):
     def model_fn(inp, tgt, mems, is_training):
+        #转换成一维的嵌套数组
         inp = tf.transpose(inp, [1, 0])
         tgt = tf.transpose(tgt, [1, 0])
-
+        print("---the inp is----")
+        print(inp)
         if FLAGS.init == "uniform":
             initializer = tf.initializers.random_uniform(
                 minval=-FLAGS.init_range,
@@ -227,7 +229,7 @@ def single_core_graph(n_token, cutoffs, is_training, inp, tgt, mems):
     model_fn = get_model_fn(
         n_token=n_token,
         cutoffs=cutoffs)
-
+    # tgt 实际是label数组
     model_ret = model_fn(
         inp=inp,
         tgt=tgt,
@@ -236,7 +238,9 @@ def single_core_graph(n_token, cutoffs, is_training, inp, tgt, mems):
 
     return model_ret
 
-
+#n_token 词汇表数量
+#cutoffs 空值
+#ps_device  /gpu:0
 def train(n_token, cutoffs, ps_device):
     # os.environ['CUDA_VISIBLE_DEVICES'] = '2,3'
 
@@ -254,30 +258,45 @@ def train(n_token, cutoffs, ps_device):
 
     # Create computational graph
     # 训练用的数据集也创建好
+    # train_batch_size 4
     train_set = train_input_fn({
         "batch_size": FLAGS.train_batch_size,
         "data_dir": FLAGS.data_dir})
 
     input_feed, label_feed = train_set.make_one_shot_iterator().get_next()
-
+    #num_core_per_host 4
+    # 0维度分割成4个数组
     inputs = tf.split(input_feed, FLAGS.num_core_per_host, 0)
     labels = tf.split(label_feed, FLAGS.num_core_per_host, 0)
 
     print_op = tf.print(inputs)
 
+    # 4 // 4
     per_core_bsz = FLAGS.train_batch_size // FLAGS.num_core_per_host
 
     tower_mems, tower_losses, tower_new_mems, tower_grads_and_vars = [], [], [], []
-
+    
+    # num_core_per_host次循环取值,比如4次
     for i in range(FLAGS.num_core_per_host):
         reuse = True if i > 0 else None
         #todo  review here
         with tf.device(assign_to_gpu(i, ps_device)), \
              tf.variable_scope(tf.get_variable_scope(), reuse=reuse):
+            #
+           #Placeholder的中文意思就是占位符，用于在会话运行时动态提供输入数据。
+           #Placeholder相当于定义了一个位置，在这个位置上的数据在程序运行时再指定。
+           #在以后的编程中我们可能会遇到这样的情况：在训练神经网络时需要每次提供一个批量的训练样本，
+           #如果每次迭代选取的数据要通过常量表示，那么TensorFlow 的计算图会非常大。
+           #因为每增加一个常量，TensorFlow 都会在计算图中增加一个结点，所以说拥有几百万次迭代的神经网络会拥有极其庞大的计算图，
+           #而占位符却可以解决这一点，它只会拥有占位符这一个结点，Placeholder机制的出现就是为了解决这个问题，
+           #我们在编程的时候只需要把数据通过placeholder传入tensorflow计算图即可
+           #16层
             mems_i = [tf.placeholder(tf.float32,
                                      [FLAGS.mem_len, per_core_bsz, FLAGS.d_model])
                       for _ in range(FLAGS.n_layer)]
-
+            # 
+            # mems_i 16层的训练图，16个初始值，每个初始值预定[100, 1, 410]，100个维度，1x410的数组
+            #
             loss_i, new_mems_i, grads_and_vars_i = single_core_graph(
                 n_token=n_token,
                 cutoffs=cutoffs,
@@ -292,6 +311,7 @@ def train(n_token, cutoffs, ps_device):
             tower_grads_and_vars.append(grads_and_vars_i)
 
     # average losses and gradients across towers
+    # 跨塔的平均损失和梯度，what is tower?
     if len(tower_losses) > 1:
         loss = tf.add_n(tower_losses) / len(tower_losses)
         grads_and_vars = average_grads_and_vars(tower_grads_and_vars)
@@ -301,13 +321,20 @@ def train(n_token, cutoffs, ps_device):
     grads, all_vars = zip(*grads_and_vars)
 
     # clip gradient
+    # 梯度分割，截取比率0.25
+    # Gradient Clipping的引入是为了处理gradient explosion或者gradients vanishing的问题。
+    #当在一次迭代中权重的更新过于迅猛的话，很容易导致loss divergence。Gradient Clipping的直观作用就是让权重的更新限制在一个合适的范围。
+
+    # global_norm 是所有梯度的平方和 ?
     clipped, gnorm = tf.clip_by_global_norm(grads, FLAGS.clip)
     grads_and_vars = list(zip(clipped, all_vars))
 
     # configure the optimizer
+    # 这个函数主要用于返回或者创建（如果有必要的话）一个全局步数的tensor变量。参数只有一个，就是图，如果没有指定那么就是默认的图。
     global_step = tf.train.get_or_create_global_step()
 
     # warmup stage: increase the learning rate linearly
+    # 预热阶段：线性增加学习率 0
     if FLAGS.warmup_steps > 0:
         warmup_lr = tf.to_float(global_step) / tf.to_float(FLAGS.warmup_steps) \
                     * FLAGS.learning_rate
@@ -315,6 +342,7 @@ def train(n_token, cutoffs, ps_device):
         warmup_lr = 0.0
 
     # decay stage: decay the learning rate using the cosine schedule
+    # 衰减阶段：使用余弦表衰减学习率
     decay_lr = tf.train.cosine_decay(
         FLAGS.learning_rate,
         global_step=global_step - FLAGS.warmup_steps,
@@ -322,10 +350,16 @@ def train(n_token, cutoffs, ps_device):
         alpha=FLAGS.min_lr_ratio)
 
     # choose warmup or decay
+    # 选择预热或者衰减，这里应该是衰减
     learning_rate = tf.where(global_step < FLAGS.warmup_steps,
                              warmup_lr, decay_lr)
 
     # get the train op
+    # Adam这个名字来源于Adaptive Moment Estimation，自适应矩估计。
+    # RMSprop，Adadelta，Adam是非常相似的优化算法，Adam的bias-correction帮助其在最后优化期间梯度变稀疏的情况下略微战胜了RMSprop。
+    # 概率论中矩的含义是：如果一个随机变量 X 服从某个分布，X 的一阶矩是 E(X)，也就是样本平均值，X 的二阶矩就是 E(X^2)，也就是样本平方的平均值。
+    # Adam 算法根据损失函数对每个参数的梯度的一阶矩估计和二阶矩估计动态调整针对于每个参数的学习速率。
+    #Adam 也是基于梯度下降的方法，但是每次迭代参数的学习步长都有一个确定的范围，不会因为很大的梯度导致很大的学习步长，参数的值比较稳定。
     optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
     train_op = optimizer.apply_gradients(grads_and_vars, global_step)
 
@@ -495,6 +529,8 @@ def main(unused_argv):
     # Get corpus info
     corpus_info = data_utils.get_corpus_info(FLAGS.corpus_info_path)
     n_token = corpus_info["vocab_size"]
+    #[1:-1] 从下标为1（从0开始）的元素开始顺序读取
+    #[1::-1] 从下标为1（从0开始）的元素开始翻转读取
     cutoffs = corpus_info["cutoffs"][1:-1]
     tf.logging.info("n_token {}".format(n_token))
 
